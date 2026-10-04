@@ -1,4 +1,4 @@
-# Teachable LLM
+# [Try Teachable LLM](https://zackakil.github.io/teachable-llm/)
 
 A simple, interactive web app designed to demonstrate how Large Language Models (LLMs) predict text one word/token at a time based on training data probabilities.
 
