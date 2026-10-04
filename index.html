@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teachable LLM: Next-Word Predictor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Teachable LLM</h1>
+    <p class="subtitle">Understand how Large Language Models (LLMs) generate text by predicting next words/tokens based
+      on training data.</p>
+  </header>
+
+  <main class="container">
+    <!-- Step 1: Training Data -->
+    <section class="card">
+      <div class="step-header">
+        <span class="step-badge">Step 1</span>
+        <h2>Training Data</h2>
+      </div>
+      <p class="description">Provide training data (example sentences), one per line.
+        The model learns the probabilities of the words that follow other words.</p>
+
+      <div class="preset-buttons">
+        <button id="preset-animals" class="btn btn-secondary">Load Sample: Animals</button>
+        <button id="preset-rhyme" class="btn btn-secondary">Load Sample: Rhyme</button>
+        <button id="clear-data" class="btn btn-secondary">Clear All</button>
+      </div>
+
+      <textarea id="training-input" rows="6"
+        placeholder="Enter training data sentences here, one per line..."></textarea>
+
+      <div class="controls-row">
+        <label for="context-size">
+          Context Window (N-gram size):
+          <select id="context-size">
+            <option value="1" selected>1 Token Context (Bigram)</option>
+            <option value="2">2 Token Context (Trigram)</option>
+          </select>
+        </label>
+        <button id="train-btn" class="btn btn-primary">Train Model</button>
+      </div>
+    </section>
+
+    <!-- Step 2: Learned Probability Table -->
+    <section class="card">
+      <div class="step-header">
+        <span class="step-badge">Step 2</span>
+        <h2>Learned Probability Table</h2>
+      </div>
+      <p class="description">This table displays the model's learned vocabulary and the exact probability distribution
+        for words following each word.</p>
+      <div id="model-table-container">
+        <p class="placeholder-text">Model not trained yet. Provide training data and click "Train Model".</p>
+      </div>
+    </section>
+
+    <!-- Step 3: Inference -->
+    <section class="card">
+      <div class="step-header">
+        <span class="step-badge">Step 3</span>
+        <h2>Model Inference & Generation</h2>
+      </div>
+      <p class="description">Provide a prompt and run inference to observe how the model generates words step-by-step
+        based on word probabilities.</p>
+
+      <div class="inference-inputs">
+        <div class="field-group">
+          <label for="prompt-input">Prompt Text</label>
+          <input type="text" id="prompt-input" placeholder="e.g. the cat" value="the cat">
+        </div>
+        <div class="field-group small">
+          <label for="tokens-count">Words to Generate</label>
+          <input type="number" id="tokens-count" min="1" max="20" value="5">
+        </div>
+        <div class="field-group small">
+          <label for="sampling-mode">Sampling Strategy</label>
+          <select id="sampling-mode">
+            <option value="probability-sampled" selected>Probability-Weighted Sampling</option>
+            <option value="greedy">Greedy Sampling (Top Choice)</option>
+            <option value="uniform-random">Pure Random Sampling</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dynamic Explainer Box for Selected Sampling Strategy -->
+      <div id="strategy-explainer" class="explainer-box"></div>
+
+      <button id="predict-btn" class="btn btn-primary btn-large">Generate Words/Tokens</button>
+
+      <div id="generation-result" class="result-box hidden">
+        <h3>Generated Output</h3>
+        <div id="generated-text-display" class="generated-text"></div>
+
+        <h3>Step-by-Step Inference Trace</h3>
+        <div id="trace-container" class="trace-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
