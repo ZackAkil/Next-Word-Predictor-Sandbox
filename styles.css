@@ -88,6 +88,10 @@ header .disclaimer {
   margin-bottom: 1.25rem;
 }
 
+.description:last-child {
+  margin-bottom: 0;
+}
+
 .preset-buttons {
   display: flex;
   gap: 0.5rem;
