@@ -1,4 +1,4 @@
-// Teachable Next-Word Predictor Logic
+// Next-Word Predictor Sandbox Logic
 
 let ngramMap = {};
 let vocabulary = [];
